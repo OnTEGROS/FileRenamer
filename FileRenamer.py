@@ -19,8 +19,6 @@ for name in glob.glob(dir1+"/*"):
         name2 = name.replace("\\", "/")
         file_list.append(name2)
 
-print(file_list)
-
 if input_mode == "1":
     name_list = []
     number_of_files = len(file_list)
@@ -29,9 +27,9 @@ if input_mode == "1":
     print("2: 10 digits")
     print("")
 
-    input_naming = str(input())
+    input_method = str(input())
 
-    if input_naming == "1":
+    if input_method == "1":
         choice_list = []
         for number in range(1, number_of_files+1):
             choice_list.append(number)
@@ -39,9 +37,8 @@ if input_mode == "1":
             random_name = random.choice(choice_list)
             choice_list.remove(random_name)
             name_list.append(str(random_name))
-        print(name_list)
 
-    elif input_naming == "2":
+    elif input_method == "2":
         for file in range(1, number_of_files+1):
             random_name = ""
             name_added = 0
@@ -52,11 +49,20 @@ if input_mode == "1":
                     name_list.append(random_name)
                     name_added = 1
 
-
 name_list2 = []
-for item in name_list:
-    name_list2.append((dir1 + "/" + item).replace("\\", "/"))
 
+print("Add prefix? (y/n)")
+input_prefix = str(input().lower())
+
+
+if input_prefix == "y":
+    print("Enter prefix:")
+    prefix = str(input())
+    for item in name_list:
+        name_list2.append((dir1 + "/" + prefix + item).replace("\\", "/"))
+else:
+    for item in name_list:
+        name_list2.append((dir1 + "/" + item).replace("\\", "/"))
 
 
 counter = 0
